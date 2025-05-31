@@ -12,7 +12,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.transaction.Transactional;
 import lombok.Data;
+import org.springframework.data.jpa.repository.Modifying;
 
 @Entity
 @Data

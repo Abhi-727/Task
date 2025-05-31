@@ -4,16 +4,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.org.entity.TaskEntity;
-import com.org.entity.UserEntity;
 import com.org.formbinding.TaskBinding;
 import com.org.formbinding.UserBinding;
-import com.org.formbinding.UserLogin;
 import com.org.service.ITaskService;
 import com.org.service.IUserReg;
 
@@ -64,8 +59,6 @@ public class TaskController{
 		System.out.println("create task : userid  checking " +userId);
 		
 		return "redirect:/createtask?userId="+userId;
-		
-		
 	}
 	
 	
@@ -84,50 +77,13 @@ public class TaskController{
 		  
 		  System.out.println("checking userid : " + userId);
 		  return "viewtask";
-		  //return "createtask";
-			
 	  }
-	 
-		/*
-		 * @GetMapping("/task") public String backToCreateTask(@RequestParam Integer
-		 * userId, Model model) {
-		 * 
-		 * //this.userId = userId; //userId =14;
-		 * 
-		 * TaskBinding taskbinding = new TaskBinding();
-		 * model.addAttribute("TaskBinding", taskbinding); model.addAttribute("userId",
-		 * userId);
-		 * 
-		 * 
-		 * System.out.println("userid : "+userId); // model.addAttribute("task", new
-		 * TaskBinding());
-		 * 
-		 * return "redirect:/createtask?userId=" + userId; }
-		 */
+
+	  @GetMapping("/delete")
+	public String deletetask(@RequestParam Integer userId, @RequestParam Integer taskId) {
+		this.userId = userId;
+		  service.deleteTask(taskId, userId);
+
+		  return "redirect:/viewtask?userId="+userId;
+	  }
 }
-
-
-/*
- * java.lang.IllegalStateException: Neither BindingResult nor plain target
- * object for bean name 'TaskBinding' available as request attribute
- */ // ----1//
-
-//exception --date and time
-
-/*
- * org.springframework.beans.factory.UnsatisfiedDependencyException: Error
- * creating bean with name 'taskController': Unsatisfied dependency expressed
- * through field 'service': Error creating bean with name 'taskSerImpl':
- * Unsatisfied dependency expressed through field 'taskrepo': Error creating
- * bean with name 'taskEntityRepo' defined in com.org.repo.TaskEntityRepo
- * defined in @EnableJpaRepositories declared on
- * JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create
- * query for public abstract com.org. entity.UserEntity
- * com.org.repo.TaskEntityRepo.findByUserId(java.lang.Integer); Reason: Failed
- * to create query for method public abstract com.org.entity.UserEntity
- * com.org.repo.TaskEntityRepo.findByUserId(java.lang.I nteger); No property
- * 'id' found for type 'UserEntity'; Traversed path: TaskEntity.user
- */
-
-
-//java.lang.IllegalArgumentException: The given id must not be null

@@ -13,4 +13,5 @@ public interface TaskEntityRepo extends JpaRepository<TaskEntity, Integer> {
 	@Query("from TaskEntity where user = :userId")
 	List<TaskEntity> findAllByUser(UserEntity userId);
 
+    void deleteByTaskId(Integer taskId);
 }

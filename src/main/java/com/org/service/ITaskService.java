@@ -13,4 +13,6 @@ public interface ITaskService {
 	
 	
 	public List<TaskEntity> taskList(Integer userId);
+
+	public String deleteTask(Integer taskId, Integer userId);
 }

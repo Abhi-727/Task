@@ -1,40 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-    
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>Login</title>
+
+	<!-- Bootstrap CSS (v5 CDN) -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 
-			<h3> Login </h3>
-			<font color='red'>${errMsg}</font>
-			<form:form action ="login" modelAttribute="UserLogin"  method ="POST">
-			
-				<table> 
-				
-				<tr>
-					<td>UserName:</td>
-					<td><form:input path="userMail"/><td>
-				</tr>
-				<tr>
-					<td>UserCode:</td>
-					<td><form:input path="userIdentity"/><td>
-				</tr>
-				
-				<tr>
-					<td></td>
-					<td>
-						<input type ="submit" value="login"/>
-					</td>
-				</tr>
-			</table>
-			
-		</form:form>
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-lg-5">
+			<div class="card shadow rounded-4">
+				<div class="card-body">
+					<h3 class="card-title text-center mb-4">Login</h3>
 
+					<c:if test="${not empty errMsg}">
+						<div class="alert alert-danger" role="alert">
+								${errMsg}
+						</div>
+					</c:if>
+
+					<form:form action="login" modelAttribute="UserLogin" method="POST">
+						<div class="mb-3">
+							<label for="userMail" class="form-label">Username</label>
+							<form:input path="userMail" cssClass="form-control" id="userMail"/>
+						</div>
+
+						<div class="mb-3">
+							<label for="userIdentity" class="form-label">Password</label>
+							<form:input path="userIdentity" cssClass="form-control" id="userIdentity"/>
+						</div>
+
+						<div class="d-grid">
+							<button type="submit" class="btn btn-primary">Login</button>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -27,8 +27,6 @@ public class TaskEntity {
 	private LocalDate taskDate;
 
 	private LocalTime taskTime;
-	
-	private String deleteTask;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")

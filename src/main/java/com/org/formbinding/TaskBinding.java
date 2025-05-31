@@ -10,17 +10,23 @@ import com.org.entity.UserEntity;
 
 public class TaskBinding {
 
+	private Integer taskId;
+
 	private String taskName;
 	
 	private LocalDate taskDate;
 	
 	private LocalTime taskTime;
-	
-	private String deleteTask;
-	
-	
-	
-	
+
+
+	public Integer getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(Integer taskId) {
+		this.taskId = taskId;
+	}
+
 	public String getTaskName() {
 		return taskName;
 	}
@@ -39,16 +45,18 @@ public class TaskBinding {
 	public void setTaskTime(LocalTime taskTime) {
 		this.taskTime = taskTime;
 	}
-	public String getDeleteTask() {
-		return deleteTask;
-	}
-	public void setDeleteTask(String deleteTask) {
-		this.deleteTask = deleteTask;
-	}
+
+
 	@Override
 	public String toString() {
-		return "TaskBinding [taskName=" + taskName + ", taskDate=" + taskDate + ", taskTime=" + taskTime + "]";
+		return "TaskBinding [ " +
+				"taskId=" + taskId +
+				", taskName='" + taskName + '\'' +
+				", taskDate=" + taskDate +
+				", taskTime=" + taskTime +
+				']';
 	}
+
 	public UserEntity getUserId() {
 		// TODO Auto-generated method stub
 		return null;

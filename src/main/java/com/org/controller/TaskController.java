@@ -36,7 +36,7 @@ public class TaskController{
 
 		TaskBinding taskbinding = new TaskBinding();
 		model.addAttribute("TaskBinding", taskbinding);
-		model.addAttribute("userid", userId);
+		model.addAttribute("userId", userId);
 
 		// model.addAttribute("task", new TaskBinding());
 

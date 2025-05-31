@@ -15,6 +15,7 @@
     <table border="1">
         <thead>
             <tr>
+                <th>TaskId</th>
                 <th>TaskName</th>
                 <th>DueDate</th>
                 <th>DueTime</th>
@@ -24,6 +25,7 @@
         <tbody>
             <c:forEach items="${task}" var="taskinfo">
                 <tr>
+                    <td>${taskinfo.taskId}</td>
                     <td>${taskinfo.taskName}</td>
                     <td>${taskinfo.taskDate}</td>
                     <td>${taskinfo.taskTime}</td>

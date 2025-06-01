@@ -21,14 +21,12 @@ public class UserController {
 
 	@GetMapping("/")
 	public String homePage() {
-
 		return "index";
 	}
 
 	@GetMapping("/signup")
 	public String signupPage(Model model) {
 		UserBinding userbinding = new UserBinding();
-
 		model.addAttribute("UserBinding", userbinding);
 		return "signup";
 	}
@@ -39,7 +37,7 @@ public class UserController {
 		String result = service.registeruser(ubind);
 
 		if ("Registered successfully".equals(result)) {
-//			model.addAttribute("reg", "Details are saved");
+			model.addAttribute("reg", "User Registered Successfully");
 		} else {
 			model.addAttribute("reg", "User Already Exists");
 			return "signup";  
@@ -50,7 +48,6 @@ public class UserController {
 
 	@GetMapping("/login")
 	public String loginPage(Model model) {
-
 		UserLogin user = new UserLogin();
 		model.addAttribute("UserLogin", user);
 		return "login";
@@ -58,16 +55,9 @@ public class UserController {
 
 	@PostMapping("/login")
 	public String submitLoginPage(@ModelAttribute("UserLogin") UserLogin ulogin,Model model) {
-
-		System.out.println(ulogin);
-
 		UserEntity userlogin = service.loginUser(ulogin.getUserMail(), ulogin.getUserIdentity());
 
-		System.out.println(userlogin);
-
 		if (userlogin != null) {
-
-//			session.setAttribute("userId", userlogin.getUserId());
 			return "redirect:/createtask?userId=" + userlogin.getUserId();
 		} else {
 			model.addAttribute("errMsg", "Entered wrong credentials !");
@@ -76,22 +66,3 @@ public class UserController {
 	}
 
 }
-
-/*
- * java.lang.IllegalStateException: Neither BindingResult nor plain target
- * object for bean name 'UserBinding' available as request attribute
- */
-
-//java.lang.IllegalStateException: Neither BindingResult nor plain
-//target object for bean name 'UserLogin' available as request attribute--added @ModelAttribute("UserLogin")
-
-//org.hibernate.query.QueryTypeMismatchException: Specified result type [java.lang.String]
-//did not match Query selection type [com.org.entity.UserEntity] - multiple selections: use Tuple or array
-
-//boolean details=service.loginUser(ulogin.getUserMail(),ulogin.getUserIdentity());
-
-//System.out.println(details);
-
-/*
- * if(userlogin==null) { return "login"; } else { return "createtask"; }
- */

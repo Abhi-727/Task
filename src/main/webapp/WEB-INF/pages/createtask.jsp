@@ -16,11 +16,11 @@
 <!-- Navbar with Logout -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">ToDo App</a>
+		<a class="navbar-brand" href="/">ToDo App</a>
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link btn btn-outline-light px-3" href="logout">Logout</a>
+					<a class="nav-link btn btn-outline-light px-3" href="/">Logout</a>
 				</li>
 			</ul>
 		</div>
@@ -35,11 +35,9 @@
 				<div class="card-body">
 					<h3 class="card-title text-center mb-4">Create Task</h3>
 
-					<!-- Success Alert -->
-					<c:if test="${not empty task}">
-						<div class="alert alert-success alert-dismissible fade show" role="alert">
-								${task}
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					<c:if test="${not empty errorMsg}">
+						<div class="alert alert-danger" role="alert">
+								${errorMsg}
 						</div>
 					</c:if>
 
@@ -64,6 +62,14 @@
 							<button type="submit" class="btn btn-primary">Create</button>
 						</div>
 					</form:form>
+
+					<!-- Success Alert -->
+					<c:if test="${not empty task}">
+						<div class="alert alert-success alert-dismissible fade show" role="alert">
+								${task}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					</c:if>
 
 					<div class="text-center">
 						<a href="viewtask?userId=${userId}" class="btn btn-link">View Tasks</a>

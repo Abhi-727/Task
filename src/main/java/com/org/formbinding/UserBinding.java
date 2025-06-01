@@ -15,9 +15,7 @@ public class UserBinding {
 	public void setUserPhno(long userPhno) {
 		this.userPhno = userPhno;
 	}
-	
-	
-	
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -36,8 +34,6 @@ public class UserBinding {
 	public void setUserMail(String userMail) {
 		this.userMail = userMail;
 	}
-
-	
 	 
 	public String getUserIdentity() {
 		return userIdentity;

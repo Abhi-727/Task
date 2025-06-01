@@ -1,5 +1,6 @@
 package com.org.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -24,9 +25,9 @@ public class UserEntity {
 	private long userPhno;
 	private  String userIdentity;
 	private String userGender;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	public List<TaskEntity> task;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<TaskEntity> task;
 	
 	
 	public List<TaskEntity> getTask() {

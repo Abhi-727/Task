@@ -7,12 +7,10 @@ import com.org.formbinding.TaskBinding;
 
 public interface ITaskService {
 	
-//	public TaskEntity saveUser(TaskEntity user);
-	
-	public TaskEntity createTask(TaskBinding taskbinding, Integer userId);
+	TaskEntity createTask(TaskBinding taskbinding, Integer userId) throws Exception;
 	
 	
-	public List<TaskEntity> taskList(Integer userId);
+	List<TaskEntity> taskList(Integer userId);
 
-	public String deleteTask(Integer taskId, Integer userId);
+	String deleteTask(Integer taskId, Integer userId);
 }

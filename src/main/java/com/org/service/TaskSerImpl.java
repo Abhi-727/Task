@@ -1,5 +1,7 @@
 package com.org.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,33 +29,43 @@ public class TaskSerImpl implements ITaskService {
 	
 	@Override
 	@Transactional
-	public TaskEntity createTask(TaskBinding task, Integer userId) {
+	public TaskEntity createTask(TaskBinding task, Integer userId) throws Exception {
 
 		TaskEntity taskentity = new TaskEntity();
 
 		BeanUtils.copyProperties(task, taskentity);
 
-		TaskEntity taskinfo = taskrepo.save(taskentity);
+		long givenDate = taskentity.getTaskDate().toEpochDay();
+		long currentDate = LocalDate.now().toEpochDay();
+		long givenTime = taskentity.getTaskTime().toSecondOfDay();
+		long currentTime = LocalTime.now().toSecondOfDay();
 
+		if(taskentity.getTaskDate() == null) {
+			throw new Exception("Task completion date is mandatory");
+		}
+
+		if(taskentity.getTaskDate() != null && givenDate < currentDate) {
+			throw new Exception("Only current date and future dates are allowed");
+		}
+
+		if(taskentity.getTaskTime() != null && givenTime < currentTime) {
+			throw new Exception("Only future times is allowed");
+		}
+
+		TaskEntity taskinfo = taskrepo.save(taskentity);
 		UserEntity user = userrepo.findByUserId(userId);
 
 		if (user != null) {
-
 			taskinfo.setUser(user);
-
 			taskrepo.save(taskinfo);
 		}
-
 		return taskinfo;
 	}
 
 	@Override
 	public List<TaskEntity> taskList(Integer userId) {
-
 		UserEntity user = userrepo.findByUserId(userId);
-		
-		List<TaskEntity> task = taskrepo.findAllByUser(user);
-		
+		List<TaskEntity> task = taskrepo.findByUser(user);
 		return task;
 	}
 
@@ -61,17 +73,17 @@ public class TaskSerImpl implements ITaskService {
 	@Transactional
 	public String deleteTask(Integer taskId, Integer userId) {
 		UserEntity user = userrepo.findByUserId(userId);
+
 		if (user != null) {
 			Optional<TaskEntity> task = taskrepo.findById(taskId);
-			if (task.isPresent()) {
-				taskrepo.findAllByUser(user).remove(task.get());
-//				taskrepo.deleteByTaskId(task.get().getTaskId());
+
+			if (task.isPresent() && task.get().getUser().getUserId().equals(userId)) {
+				taskrepo.deleteById(taskId);
 				return "DELETED";
 			}
 		}
 		return "NOT_FOUND";
 	}
-
 
 }
 

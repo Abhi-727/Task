@@ -8,10 +8,7 @@ import com.org.formbinding.UserBinding;
 
 public interface IUserReg {
 	
-	public String registeruser(UserBinding user);
-	public UserEntity loginUser(String name,String identity);
-	
-	public UserEntity saveUser(Integer user);
-	public UserEntity getUserinfo(Integer userId);
+	String registeruser(UserBinding user);
+	UserEntity loginUser(String name, String identity);
 	
 }

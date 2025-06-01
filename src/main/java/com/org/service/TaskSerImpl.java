@@ -1,7 +1,7 @@
 package com.org.service;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,21 +35,22 @@ public class TaskSerImpl implements ITaskService {
 
 		BeanUtils.copyProperties(task, taskentity);
 
-		long givenDate = taskentity.getTaskDate().toEpochDay();
-		long currentDate = LocalDate.now().toEpochDay();
-		long givenTime = taskentity.getTaskTime().toSecondOfDay();
-		long currentTime = LocalTime.now().toSecondOfDay();
-
 		if(taskentity.getTaskDate() == null) {
 			throw new Exception("Task completion date is mandatory");
 		}
 
-		if(taskentity.getTaskDate() != null && givenDate < currentDate) {
+		long givenDate = taskentity.getTaskDate().toEpochDay();
+		long currentDate = LocalDate.now().toEpochDay();
+
+		if(givenDate < currentDate) {
 			throw new Exception("Only current date and future dates are allowed");
 		}
 
-		if(taskentity.getTaskTime() != null && givenTime < currentTime) {
-			throw new Exception("Only future times is allowed");
+		if (taskentity.getTaskTime() != null) {
+			LocalDateTime taskDateTime = LocalDateTime.of(taskentity.getTaskDate(), taskentity.getTaskTime());
+			if (taskDateTime.isBefore(LocalDateTime.now())) {
+				throw new Exception("Only future times are allowed");
+			}
 		}
 
 		TaskEntity taskinfo = taskrepo.save(taskentity);

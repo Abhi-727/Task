@@ -11,11 +11,19 @@
 	<!-- Bootstrap 5 CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
+<body class="bg-light" style="min-height: 100vh;">
 
-<div class="container">
-	<div class="row justify-content-center">
-		<div class="col-md-6 col-lg-5">
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">ToDo App</a>
+	</div>
+</nav>
+
+<!-- Main Content -->
+<div class="container d-flex align-items-center" style="min-height: 90vh;">
+	<div class="row justify-content-center w-100">
+		<div class="col-md-6 col-lg-5 mx-auto">
 			<div class="card shadow p-4 rounded-4">
 				<h3 class="text-center mb-4">Sign Up</h3>
 
@@ -27,41 +35,56 @@
 					</div>
 				</c:if>
 
+				<!-- Sign-up form -->
 				<form:form action="register" modelAttribute="UserBinding" method="POST">
 					<div class="mb-3">
 						<label for="userName" class="form-label">Name</label>
-						<form:input path="userName" cssClass="form-control" id="userName"/>
+						<form:input path="userName" cssClass="form-control" id="userName"
+									placeholder="Enter your name" required="required"/>
 					</div>
 
 					<div class="mb-3">
 						<label for="userMail" class="form-label">Mail</label>
-						<form:input path="userMail" cssClass="form-control" id="userMail"/>
+						<form:input path="userMail" cssClass="form-control" id="userMail" type="email"
+									placeholder="Enter your email" required="required"/>
 					</div>
 
 					<div class="mb-3">
 						<label for="userPhno" class="form-label">Phone</label>
-						<form:input path="userPhno" cssClass="form-control" id="userPhno"/>
+						<form:input path="userPhno" cssClass="form-control" id="userPhno" type="tel"
+									placeholder="Enter your phone number"
+									pattern="[0-9]{10}" title="Enter a valid 10-digit number" required="required"/>
 					</div>
 
 					<div class="mb-3">
 						<label for="userIdentity" class="form-label">User Code</label>
-						<form:input path="userIdentity" cssClass="form-control" id="userIdentity"/>
+						<form:input path="userIdentity" cssClass="form-control" id="userIdentity"
+									placeholder="Enter your secret code" required="required"/>
 					</div>
 
 					<div class="mb-3">
 						<label class="form-label">Gender</label><br/>
 						<div class="form-check form-check-inline">
-							<form:radiobutton path="userGender" value="male" cssClass="form-check-input" id="genderMale"/>
+							<form:radiobutton path="userGender" value="male" cssClass="form-check-input"
+											  id="genderMale" required="required"/>
 							<label class="form-check-label" for="genderMale">Male</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<form:radiobutton path="userGender" value="Female" cssClass="form-check-input" id="genderFemale"/>
+							<form:radiobutton path="userGender" value="Female" cssClass="form-check-input"
+											  id="genderFemale"/>
 							<label class="form-check-label" for="genderFemale">Female</label>
 						</div>
 					</div>
 
 					<div class="d-grid mb-2">
 						<button type="submit" class="btn btn-primary">Sign Up</button>
+					</div>
+
+					<!-- Back Button -->
+					<div class="d-grid">
+						<button type="button" class="btn btn-secondary" onclick="history.back();">
+							&#8592; Back
+						</button>
 					</div>
 				</form:form>
 			</div>

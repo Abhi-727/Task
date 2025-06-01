@@ -44,8 +44,15 @@
 							<form:input path="userIdentity" cssClass="form-control" id="userIdentity"/>
 						</div>
 
-						<div class="d-grid">
+						<div class="d-grid mb-2">
 							<button type="submit" class="btn btn-primary">Login</button>
+						</div>
+
+						<!-- Back Button -->
+						<div class="d-grid">
+							<button type="button" class="btn btn-secondary" onclick="history.back();">
+								&#8592; Back
+							</button>
 						</div>
 					</form:form>
 				</div>

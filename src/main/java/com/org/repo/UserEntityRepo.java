@@ -6,8 +6,8 @@ import com.org.entity.UserEntity;
 
 public interface UserEntityRepo extends JpaRepository<UserEntity, Integer> {
 
-	public UserEntity findByUserMailAndUserIdentity(String name,String identity);
+	UserEntity findByUserMailAndUserIdentity(String name, String identity);
 
-	public UserEntity findByUserId(Integer userid);
+	UserEntity findByUserId(Integer userid);
 
 }

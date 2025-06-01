@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.org.entity.UserEntity;
 import com.org.formbinding.UserBinding;
 import com.org.formbinding.UserLogin;
-import com.org.repo.UserEntityRepo;
 import com.org.service.IUserReg;
 
 @Controller

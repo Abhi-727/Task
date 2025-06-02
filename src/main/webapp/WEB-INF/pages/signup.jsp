@@ -57,7 +57,7 @@
 					</div>
 
 					<div class="mb-3">
-						<label for="userIdentity" class="form-label">User Code</label>
+						<label for="userIdentity" class="form-label">Password</label>
 						<form:input path="userIdentity" cssClass="form-control" id="userIdentity"
 									placeholder="Enter your secret code" required="required"/>
 					</div>
